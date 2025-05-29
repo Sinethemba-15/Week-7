@@ -2,11 +2,22 @@
   font-family: "Handlee", cursive;
   font-weight: 400;
   font-style: normal;
-  background: beige;
+  background: rgb(219, 162, 132);
   display: block;
   margin: 45px auto;
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 30px 50px gray; max-width: 500px;
+  box-shadow: 0 30px 50px gray;
+  max-width: 500px;
 }
-.search-block{background: rgb(165, 69, 69);}
+.search-block {
+  background: rgb(219, 162, 132);
+  font-family: "Handlee", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.search-input {
+  font-family: "Handlee", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
