@@ -15,14 +15,19 @@
   font-family: "Handlee", cursive;
   font-weight: 400;
   font-style: normal;
+  border-radius: 5px;
+  border: none;
+  color: white;
 }
 .search-input {
   font-family: "Handlee", cursive;
   font-weight: 400;
   font-style: normal;
+  border: none;
 }
 .degrees {
   font-weight: bold;
+  font-size: larger;
 }
 body {
   background: beige;
