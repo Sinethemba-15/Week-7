@@ -1,3 +1,8 @@
-body {
-  background: red;
+.handlee-regular {
+  font-family: "Handlee", cursive;
+  font-weight: 400;
+  font-style: normal;
+  background: beige;
+  display: block;
+  margin: 8px;
 }
