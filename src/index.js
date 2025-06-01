@@ -6,15 +6,17 @@ function refreshWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let speedElement = document.querySelector("#speed");
   let timeElement = document.querySelector("#time");
-  let date = new Date(response.date.time + 1000);
+  let date = new Date(response.date.time * 1000);
   let iconElement = document.querySelector("#icon");
-  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="emoji" />`;
+
   cityElement.innerHTML = response.data.city;
+  timeElement.innerHTML = `${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
   descriptionElement.innerHTML = response.data.condition.description;
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
-  speedElement.innerHTML = `${response.wind.speed}km/h`;
-  timeElement.innerHTML = `${date.getDay()} ${date.getHours()}:${date.getMinutes()}`;
+  speedElement.innerHTML = `${response.data.wind.speed}km/h`;
+
   temperatureElement.innerHTML = Math.round(temperature);
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="emoji" />`;
 }
 function formatDate(date) {
   let minutes = date.getMinutes();
@@ -34,7 +36,7 @@ function formatDate(date) {
     minutes = `0${minutes}`;
   }
 
-  return `${day} ${hours}: ${minutes}`;
+  return `${day} ${hours}:${minutes}`;
 }
 function searchCity(city) {
   let apiKey = "80to4504b1bffce54e6217aa359d05ad";
