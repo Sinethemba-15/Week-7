@@ -27,8 +27,20 @@
 }
 .degrees {
   font-weight: bold;
-  font-size: larger;
+  font-size: 60px;
+  display: flex;
 }
 body {
   background: beige;
 }
+.weather-data {
+  display: flex;
+  justify-content: space-between;
+}
+main {
+  padding: 16px 0;
+}
+.emoji {
+  font-size: 40px;
+}
+.unit{font-size: 35px;}
