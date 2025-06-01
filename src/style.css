@@ -41,6 +41,9 @@ main {
   padding: 16px 0;
 }
 .emoji {
-  font-size: 40px;
+  width: 88px;
+  height: 88px;
 }
-.unit{font-size: 35px;}
+.unit {
+  font-size: 35px;
+}
