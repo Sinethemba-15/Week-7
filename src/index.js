@@ -52,7 +52,30 @@ function handleSearchSubmit(event) {
   searchCity(searchInput.value);
 }
 
+function displayForecast() {
+  let days = ["Thru", "Fri", "Sat", "Sun", "Mon", "Tue"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+          <div class="weather-forecast-date">
+            <div class="day">${day}</div>
+            <div class="image">⛅</div>
+            <div class="weather-forecast-temp">
+              <div class="temp"><strong>7°c </strong></div>
+              <div class="temp-2"><strong>17°c</strong></div>
+            </div>
+          </div>
+          `;
+  });
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
+
 let searchFormElement = document.querySelector("#search-bar");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Sasolburg");
+displayForecast();
