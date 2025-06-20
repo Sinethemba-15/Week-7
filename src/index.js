@@ -17,6 +17,7 @@ function refreshWeather(response) {
 
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="emoji" />`;
+  getForecast(response.data.city);
 }
 function formatDate(date) {
   let minutes = date.getMinutes();
@@ -51,24 +52,38 @@ function handleSearchSubmit(event) {
   cityElement.innerHTML = searchInput.value;
   searchCity(searchInput.value);
 }
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+function getForecast(city) {
+  let apiKey = "80to4504b1bffce54e6217aa359d05ad";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios(apiUrl).then(displayForecast);
+}
 
-function displayForecast() {
-  let days = ["Thru", "Fri", "Sat", "Sun", "Mon", "Tue"];
+function displayForecast(response) {
   let forecastHtml = "";
-
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
           <div class="weather-forecast-date">
-            <div class="day">${day}</div>
-            <div class="image">⛅</div>
+            <div class="day">${formatDay(day.time)}</div>
+            <img src="${day.condition.icon_url}" class="image" />
             <div class="weather-forecast-temp">
-              <div class="temp"><strong>7°c </strong></div>
-              <div class="temp-2"><strong>17°c</strong></div>
+              <div class="temp"><strong>${Math.round(
+                day.temperature.maximum
+              )} ºc</strong></div>
+              <div class="temp-2"><strong>${Math.round(
+                day.temperature.minimum
+              )}ºc</strong></div>
             </div>
           </div>
           `;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
@@ -78,4 +93,3 @@ let searchFormElement = document.querySelector("#search-bar");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Sasolburg");
-displayForecast();
